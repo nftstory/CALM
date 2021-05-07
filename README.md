@@ -4,6 +4,8 @@
 
 [Github Repo](https://github.com/nftstory/CALM)
 
+[MATIC CALM721 Contract](https://explorer-mainnet.maticvigil.com/address/0xa9cC685d44d083E43f19B041931ABA04995df0db)
+
 ## Summary
 In the interest of making NFTs as ecologically responsible as possible, we propose an open source lazy minting standard called Content Addressed Lazy Minting (CALM) and an open source reference implementation. We also provide access to a deployed version of the contract on Matic.
 
