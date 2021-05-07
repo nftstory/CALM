@@ -155,3 +155,11 @@ If there is interest amongst the developer community, we would be interested in 
 Should this submission win the GreenNFT bounty, we intend to use the reward to refine our existing submission with a professional contract audit.
 
 If you have additional ideas for funding the auditing and development of this contract and related NFT minting tools, please contact us at dev at nftstory.life or https://twitter.com/nnnnicholas.
+
+# Project structures
+
+`contracts/` contains both the CALM solidity interface and ERC721 as well as ERC1155 reference implementations
+
+`docs/` contains minimal documentation for content addressed token IDs, the contract expands on this with EIP-712 mint permits
+
+`test` minimal tests, can be used as a reference on how to talk to the contracts
