@@ -254,10 +254,10 @@ contract CALM721 is ERC721, ICALMNFT {
                 "CALM: transaction value under minimum price"
             );
             
-            payable(signer).transfer(msg.value);
+            payable(permit.payee).transfer(msg.value);
         } else {
             IERC20 token = IERC20(permit.currency);
-            token.safeTransferFrom(msg.sender, signer, permit.minimumPrice);
+            token.safeTransferFrom(msg.sender, permit.payee, permit.minimumPrice);
         }
 
         _mint(signer, permit.tokenId);
