@@ -96,7 +96,7 @@ describe("CALM 721", function () {
 
         const tokenId = computeTokenIdFromMetadata(metadata, signer.address)
 
-        const minimumPrice = ethers.utils.parseEther("0.01").toString()
+        const minimumPrice = ethers.utils.parseEther("0").toString()
 
         const permit = await getMintPermitForId(tokenId, signer, contract, { minimumPrice: minimumPrice })
 

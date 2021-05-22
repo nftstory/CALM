@@ -234,7 +234,6 @@ contract CALM721 is ERC721, ICALMNFT {
         bytes32 r,
         bytes32 s
     ) external payable override {
-
         require(
             permit.kickoff <= block.timestamp &&
                 permit.deadline >= block.timestamp,
@@ -243,7 +242,10 @@ contract CALM721 is ERC721, ICALMNFT {
 
         //address 0 as recipient in the permit means anyone can claim it
         if (permit.recipient != address(0)) {
-            require(recipient == permit.recipient, "CALM: recipient does not match permit");
+            require(
+                recipient == permit.recipient,
+                "CALM: recipient does not match permit"
+            );
         }
 
         address signer = requireValidMintPermit(permit, v, r, s);
@@ -253,11 +255,12 @@ contract CALM721 is ERC721, ICALMNFT {
                 msg.value >= permit.minimumPrice,
                 "CALM: transaction value under minimum price"
             );
-            
-            payable(permit.payee).transfer(msg.value);
+
+            (bool success, ) = permit.payee.call{value: msg.value}("");
+            require(success, "Transfer failed.");
         } else {
             IERC20 token = IERC20(permit.currency);
-            token.safeTransferFrom(msg.sender, permit.payee, permit.minimumPrice);
+            token.safeTransferFrom(msg.sender, signer, permit.minimumPrice);
         }
 
         _mint(signer, permit.tokenId);

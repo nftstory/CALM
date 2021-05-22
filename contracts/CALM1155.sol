@@ -250,7 +250,8 @@ contract CALM1155 is ERC1155, ICALMNFT {
                 "CALM: transaction value under minimum price"
             );
 
-            payable(permit.payee).transfer(msg.value);
+            (bool success, ) = permit.payee.call{value: msg.value}("");
+            require(success, "Transfer failed.");
         } else {
             IERC20 token = IERC20(permit.currency);
             token.safeTransferFrom(msg.sender, permit.payee, permit.minimumPrice);
