@@ -47,7 +47,7 @@ The following code gets the id of a CALM NFT given a JSON metadata SHA1 digest `
 ```solidity
 function computeTokenId(uint160 metadataSHA1) external pure returns (uint256 tokenId) {
 
-    // Compute a 96bit (12 bytes) id for the creator based on ther Ethereum address (160 bits / 20 bytes) and the metadata SHA1 digest
+    // Compute a 96bit (12 bytes) id for the creator based on their Ethereum address (160 bits / 20 bytes) and the metadata SHA1 digest
     bytes12 tokenSpecificCreatorIdentifier = bytes12(keccak256(abi.encode(msg.sender)));
 
     // Pack `metadataSHA1` (160bit) and `tokenSpecificCreatorIdentifier` (96bit) into a 256bit uint that will be our token id
